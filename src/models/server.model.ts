@@ -1,9 +1,12 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import db from '../../database/connection';
-import indexRoutes from '../routes/index.routes';
 import usuariosRoutes from '../routes/usuarios.routes';
 import loginRoutes from '../routes/login.routes';
+import ministerioRoutes from '../routes/ministerio.routes';
+import vacunaRoutes from '../routes/vacuna.routes';
+import permisoRoutes from '../routes/permiso.routes';
+import uploadsRoutes from '../routes/uploads.routes';
 
 class Server {
   private app: Application;
@@ -11,6 +14,10 @@ class Server {
   private apiPaths = {
     usuarios: '/api/usuarios/',
     login: '/api/login/',
+    ministerios: '/api/ministerios/',
+    vacunas: '/api/vacunas',
+    permisos: '/api/permisos',
+    uploads: '/api/uploads',
   };
 
   constructor() {
@@ -53,6 +60,10 @@ class Server {
     // this.app.use('/', indexRoutes);
     this.app.use(this.apiPaths.usuarios, usuariosRoutes);
     this.app.use(this.apiPaths.login, loginRoutes);
+    this.app.use(this.apiPaths.ministerios, ministerioRoutes);
+    this.app.use(this.apiPaths.vacunas, vacunaRoutes);
+    this.app.use(this.apiPaths.permisos, permisoRoutes);
+    this.app.use(this.apiPaths.uploads, uploadsRoutes);
   }
 
   listen(): void {
