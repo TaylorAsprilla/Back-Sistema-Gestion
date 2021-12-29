@@ -7,11 +7,18 @@ import { CustomRequest } from '../middlewares/validar-jwt';
 import Usuario from '../models/usuario.model';
 import { tokenJwt } from '../helpers/tokenJwt';
 
-class UsuariosController {
+class UsuarioController {
   public async listarUsuarios(req: CustomRequest, res: Response) {
-    const usuario = await Usuario.findAll();
+    const desde = Number(req.query.desde) || 0;
+    const hasta = Number(req.query.hasta) || 0;
 
-    res.json({ ok: true, usuario, id: req.id });
+    const [usuarios, totalUsuarios] = await Promise.all([
+      Usuario.findAll({ offset: desde, limit: 1000 }),
+
+      Usuario.count(),
+    ]);
+
+    res.json({ ok: true, usuario: usuarios, totalUsuarios: totalUsuarios, id: req.id });
   }
 
   public async listarUnUsuario(req: CustomRequest, res: Response) {
@@ -181,4 +188,4 @@ class UsuariosController {
   }
 }
 
-export const usuariosController = new UsuariosController();
+export const usuarioController = new UsuarioController();

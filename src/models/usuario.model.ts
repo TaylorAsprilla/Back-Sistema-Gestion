@@ -51,6 +51,9 @@ const Usuario = db.define(
     id_genero: {
       type: DataTypes.INTEGER,
     },
+    id_vacuna: {
+      type: DataTypes.INTEGER,
+    },
     login: {
       type: DataTypes.STRING,
     },
