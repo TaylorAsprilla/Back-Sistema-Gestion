@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { loginController } from '../controllers/login.controllers';
+import { usuarioController } from '../controllers/usuarios.controller';
 import { validarCampos } from '../middlewares/validar-campos';
+import { validarJWT } from '../middlewares/validar-jwt';
 
 /* 
   Path: 'api/login'
@@ -24,6 +26,7 @@ class LoginRoutes {
       ],
       loginController.login
     );
+    this.router.get('/renew/:id', validarJWT.validarJWT, loginController.renewToken);
   }
 }
 

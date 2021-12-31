@@ -40,6 +40,7 @@ class LoginController {
       res.json({
         ok: true,
         token: token,
+        usuario: loginUsuario,
       });
     } catch (error) {
       console.log(error);
@@ -48,6 +49,25 @@ class LoginController {
         msg: 'Hable con el administrador',
       });
     }
+  }
+
+  public async renewToken(req: Request, res: Response) {
+    const { body } = req;
+    const { id } = req.params;
+
+    const usuario = await Usuario.build(body);
+
+    // Generar el TOKEN - JWT
+    const token = await tokenJwt.generarJWT(usuario.getDataValue('id'), usuario.getDataValue('login'));
+
+    // Obtener el usuario por UID
+    const usuarioID = await Usuario.findByPk(id);
+
+    res.json({
+      ok: true,
+      token,
+      usuario: usuarioID,
+    });
   }
 }
 

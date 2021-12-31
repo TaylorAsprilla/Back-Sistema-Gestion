@@ -10,7 +10,6 @@ import { tokenJwt } from '../helpers/tokenJwt';
 class UsuarioController {
   public async listarUsuarios(req: CustomRequest, res: Response) {
     const desde = Number(req.query.desde) || 0;
-    const hasta = Number(req.query.hasta) || 0;
 
     const [usuarios, totalUsuarios] = await Promise.all([
       Usuario.findAll({ offset: desde, limit: 1000 }),
@@ -57,8 +56,10 @@ class UsuarioController {
         });
       }
       // Encriptar contraseña
-      const salt = bcrypt.genSaltSync();
-      body.password = bcrypt.hashSync(password, salt);
+      if (password) {
+        const salt = bcrypt.genSaltSync();
+        body.password = bcrypt.hashSync(password, salt);
+      }
 
       const usuario = await Usuario.build(body);
 
@@ -68,11 +69,12 @@ class UsuarioController {
       // Generar Token - JWT
       const token = await tokenJwt.generarJWT(usuario.getDataValue('id'), usuario.getDataValue('login'));
 
-      res.json({ o: true, msg: 'Usuario creado ', usuario, token });
+      res.json({ ok: true, msg: 'Usuario creado ', usuario, token });
     } catch (error) {
-      console.log(error);
+      console.log('Error', error);
       res.status(500).json({
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -164,8 +166,6 @@ class UsuarioController {
         const numeroDocumento = await usuario.get().numero_documento;
 
         await usuario.update({ estado: false });
-
-        console.log('dsdsa', body);
 
         res.json({
           ok: true,

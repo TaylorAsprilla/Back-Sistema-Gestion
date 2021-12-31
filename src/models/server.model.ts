@@ -12,9 +12,9 @@ class Server {
   private app: Application;
   private port: string;
   private apiPaths = {
-    usuarios: '/api/usuarios/',
-    login: '/api/login/',
-    ministerios: '/api/ministerios/',
+    usuarios: '/api/usuarios',
+    login: '/api/login',
+    ministerios: '/api/ministerios',
     vacunas: '/api/vacunas',
     permisos: '/api/permisos',
     uploads: '/api/uploads',
