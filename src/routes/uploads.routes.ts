@@ -18,7 +18,7 @@ class UploadsRoutes {
     */
     this.router.use(fileUpload());
     this.router.put('/:tipo/:documento', validarJWT.validarJWT, uploadsController.fileUpload);
-    this.router.get('/:tipo/:foto', validarJWT.validarJWT, uploadsController.mostrarFoto);
+    this.router.get('/:tipo/:foto', uploadsController.mostrarFoto);
   }
 }
 

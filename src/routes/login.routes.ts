@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { loginController } from '../controllers/login.controllers';
+
+const { login, renewToken } = require('../controllers/login.controllers');
 import { validarCampos } from '../middlewares/validar-campos';
+import { validarJWT } from '../middlewares/validar-jwt';
 
 /* 
   Path: 'api/login'
@@ -22,8 +24,9 @@ class LoginRoutes {
         check('password', 'El password es obligatorio').not().isEmpty(),
         validarCampos.validarCampos,
       ],
-      loginController.login
+      login
     );
+    this.router.get('/renew', validarJWT.validarJWT, renewToken);
   }
 }
 

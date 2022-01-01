@@ -15,7 +15,7 @@ class ActualizarImagen {
           return false;
         }
 
-        const pathViejo = `./uploads/usuarios/${usuario.getDataValue('imagen')}`;
+        pathViejo = `./uploads/usuarios/${usuario.getDataValue('imagen')}`;
         this.borrarImagen(pathViejo);
 
         await usuario.update(
