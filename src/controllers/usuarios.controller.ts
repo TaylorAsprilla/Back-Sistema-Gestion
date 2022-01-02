@@ -84,8 +84,6 @@ class UsuarioController {
     const { body } = req;
     const { password, email, celular, numero_documento, ...campos } = body;
 
-    console.log((campos.numero_documento = numero_documento));
-
     try {
       const usuario = await Usuario.findByPk(id);
       if (!usuario) {
@@ -93,17 +91,16 @@ class UsuarioController {
           msg: 'No existe un usuario con el id ' + id,
         });
       }
-      console.log('por acáaaa');
+
       const getEmail = await usuario.get().email;
       const getNumeroDocumento = await usuario.get().numero_documento;
-      const getCelular = await usuario.get().celular;
 
       // Actualizaciones
 
-      if (getEmail !== body.email) {
+      if (getEmail !== email) {
         const existeEmail = await Usuario.findOne({
           where: {
-            email: body.email,
+            email: email,
           },
         });
         if (existeEmail) {
@@ -112,10 +109,10 @@ class UsuarioController {
             msg: 'Ya existe un usuario con este email',
           });
         }
-      } else if (getNumeroDocumento !== body.numero_documento) {
+      } else if (getNumeroDocumento !== numero_documento) {
         const existeNumeroDocumento = await Usuario.findOne({
           where: {
-            numero_documento: body.numero_documento,
+            numero_documento: numero_documento,
           },
         });
         if (existeNumeroDocumento) {
@@ -124,32 +121,19 @@ class UsuarioController {
             msg: 'Ya existe un usuario con este Número de Documento',
           });
         }
-      } else if (getCelular !== body.celular) {
-        const existeCelular = await Usuario.findOne({
-          where: {
-            celular: body.celular,
-          },
-        });
-
-        if (existeCelular) {
-          return res.status(400).json({
-            ok: false,
-            msg: 'Ya existe un usuario con este número de celular',
-          });
-        }
       }
-      campos.email = email;
-      campos.numero_documento = numero_documento;
-      campos.celular = celular;
+
+      campos.email = await email;
+      campos.numero_documento = await numero_documento;
 
       const usuarioActualizado = await usuario.update(campos, { new: true });
 
       res.json({ msg: 'Usuario Actualizado ', usuarioActualizado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error: error,
       });
     }
   }

@@ -33,7 +33,6 @@ const Usuario = db.define(
     },
     celular: {
       type: DataTypes.STRING,
-      unique: true,
     },
     fecha_nacimiento: {
       type: DataTypes.DATE,
