@@ -4,14 +4,15 @@ import fs from 'fs';
 const jwt = require('jsonwebtoken');
 
 class ActualizarImagen {
-  public async actualizarImagen(documento: string, tipo: string, nombreArchivo: string) {
+  public async actualizarImagen(id: string, tipo: string, nombreArchivo: string) {
     let pathViejo = '';
-
+    const idUSuario = String(id);
+    console.log(id);
     switch (tipo) {
       case 'usuarios':
-        const usuario = await Usuario.findOne({ where: { numero_documento: documento } });
+        const usuario = await Usuario.findOne({ where: { id: idUSuario } });
+
         if (!usuario) {
-          console.log('El Usuario no existe');
           return false;
         }
 
@@ -22,7 +23,7 @@ class ActualizarImagen {
           { imagen: nombreArchivo },
           {
             where: {
-              numero_documento: documento,
+              id: id,
             },
           }
         );

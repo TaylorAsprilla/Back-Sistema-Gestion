@@ -82,7 +82,7 @@ class UsuarioController {
   public async actualizarUsuario(req: Request, res: Response) {
     const { id } = req.params;
     const { body } = req;
-    const { password, email, celular, numero_documento, ...campos } = body;
+    const { password, email, numero_documento, imagen, ...campos } = body;
 
     try {
       const usuario = await Usuario.findByPk(id);
