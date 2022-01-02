@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 class UploadsController {
   public async fileUpload(req: Request, res: Response) {
     const tipo = req.params.tipo;
-    const documento = req.params.documento;
+    const id = req.params.id;
 
     // Validar tipo
     const tiposValidos = ['usuarios'];
@@ -60,7 +60,7 @@ class UploadsController {
         });
       }
       // Actualizar base de datos
-      actualizarImagen.actualizarImagen(documento, tipo, nombreArchivo);
+      actualizarImagen.actualizarImagen(id, tipo, nombreArchivo);
       return res.json({ ok: true, msg: 'Archivo subido', nombreArchivo: nombreArchivo, path });
     });
   }
