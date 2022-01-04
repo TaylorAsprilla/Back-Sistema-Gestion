@@ -12,12 +12,12 @@ class UsuarioController {
     const desde = Number(req.query.desde) || 0;
 
     const [usuarios, totalUsuarios] = await Promise.all([
-      Usuario.findAll({ offset: desde, limit: 1000 }),
+      Usuario.findAll({ offset: desde, limit: 5 }),
 
       Usuario.count(),
     ]);
 
-    res.json({ ok: true, usuario: usuarios, totalUsuarios: totalUsuarios, id: req.id });
+    res.json({ ok: true, usuarios: usuarios, totalUsuarios: totalUsuarios, id: req.id });
   }
 
   public async listarUnUsuario(req: CustomRequest, res: Response) {
