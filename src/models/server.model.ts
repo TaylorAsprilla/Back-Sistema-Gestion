@@ -7,6 +7,7 @@ import ministerioRoutes from '../routes/ministerio.routes';
 import vacunaRoutes from '../routes/vacuna.routes';
 import permisoRoutes from '../routes/permiso.routes';
 import uploadsRoutes from '../routes/uploads.routes';
+import busquedasRoutes from '../routes/busquedas.routes';
 
 class Server {
   private app: Application;
@@ -18,6 +19,7 @@ class Server {
     vacunas: '/api/vacunas',
     permisos: '/api/permisos',
     uploads: '/api/uploads',
+    busquedas: '/api/busquedas',
   };
 
   constructor() {
@@ -64,6 +66,7 @@ class Server {
     this.app.use(this.apiPaths.vacunas, vacunaRoutes);
     this.app.use(this.apiPaths.permisos, permisoRoutes);
     this.app.use(this.apiPaths.uploads, uploadsRoutes);
+    this.app.use(this.apiPaths.busquedas, busquedasRoutes);
   }
 
   listen(): void {
