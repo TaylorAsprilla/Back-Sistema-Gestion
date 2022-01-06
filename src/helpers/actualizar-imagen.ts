@@ -1,16 +1,17 @@
 import Usuario from '../models/usuario.model';
 import fs from 'fs';
+import Ministerio from '../models/ministerio.model';
 
 const jwt = require('jsonwebtoken');
 
 class ActualizarImagen {
   public async actualizarImagen(id: string, tipo: string, nombreArchivo: string) {
     let pathViejo = '';
-    const idUSuario = String(id);
+    const idImagen = String(id);
     console.log(id);
     switch (tipo) {
       case 'usuarios':
-        const usuario = await Usuario.findOne({ where: { id: idUSuario } });
+        const usuario = await Usuario.findOne({ where: { id: idImagen } });
 
         if (!usuario) {
           return false;
@@ -24,6 +25,28 @@ class ActualizarImagen {
           {
             where: {
               id: id,
+            },
+          }
+        );
+
+        return true;
+        break;
+
+      case 'ministerios':
+        const ministerio = await Ministerio.findOne({ where: { id: idImagen } });
+
+        if (!ministerio) {
+          return false;
+        }
+
+        pathViejo = `./uploads/ministerios/${ministerio.getDataValue('imagen')}`;
+        this.borrarImagen(pathViejo);
+
+        await ministerio.update(
+          { logo: nombreArchivo },
+          {
+            where: {
+              id: idImagen,
             },
           }
         );

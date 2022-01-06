@@ -3,7 +3,7 @@ import db from '../../database/connection';
 import Usuario from '../models/usuario.model';
 
 class BusquedasController {
-  public async busquedaTodo(req: Request, res: Response) {
+  public async busquedaUsuarios(req: Request, res: Response) {
     const busqueda = req.params.busqueda;
 
     const [results, metadata] = await db.query(
@@ -23,12 +23,12 @@ class BusquedasController {
     res.json({ ok: true, busqueda: results });
   }
 
-  public async busquedaPorTabla(req: Request, res: Response) {
+  public async busquedaMinisterios(req: Request, res: Response) {
     const busqueda = req.params.busqueda;
-    const tabla = req.params.tabla;
 
     const [results, metadata] = await db.query(
-      `SELECT * FROM ${tabla} WHERE '%${busqueda}%' IN (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_documento, email, celular, fecha_nacimiento,estado, login);`
+      `SELECT * FROM ministerio WHERE nombre LIKE '%${busqueda}%'
+                             or  descripcion LIKE '%${busqueda}%';`
     );
 
     res.json({ ok: true, busqueda: results });

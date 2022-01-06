@@ -18,8 +18,8 @@ class BusquedasRoutes {
   }
 
   config(): void {
-    this.router.get('/todo/:busqueda', validarJWT.validarJWT, busquedaController.busquedaTodo);
-    this.router.get('/todo/:tabla/:busqueda', validarJWT.validarJWT, busquedaController.busquedaPorTabla);
+    this.router.get('/usuarios/:busqueda', validarJWT.validarJWT, busquedaController.busquedaUsuarios);
+    this.router.get('/ministerios/:busqueda', validarJWT.validarJWT, busquedaController.busquedaMinisterios);
   }
 }
 

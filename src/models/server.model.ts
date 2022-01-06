@@ -8,6 +8,8 @@ import vacunaRoutes from '../routes/vacuna.routes';
 import permisoRoutes from '../routes/permiso.routes';
 import uploadsRoutes from '../routes/uploads.routes';
 import busquedasRoutes from '../routes/busquedas.routes';
+import congregacionRoutes from '../routes/congregacion.routes';
+import campoRoutes from '../routes/campo.routes';
 
 class Server {
   private app: Application;
@@ -20,6 +22,8 @@ class Server {
     permisos: '/api/permisos',
     uploads: '/api/uploads',
     busquedas: '/api/busquedas',
+    congregacion: '/api/congregacion',
+    campo: '/api/campo',
   };
 
   constructor() {
@@ -67,6 +71,8 @@ class Server {
     this.app.use(this.apiPaths.permisos, permisoRoutes);
     this.app.use(this.apiPaths.uploads, uploadsRoutes);
     this.app.use(this.apiPaths.busquedas, busquedasRoutes);
+    this.app.use(this.apiPaths.congregacion, congregacionRoutes);
+    this.app.use(this.apiPaths.campo, campoRoutes);
   }
 
   listen(): void {

@@ -2,23 +2,20 @@ import { DataTypes } from 'sequelize';
 
 import db from '../../database/connection';
 
-const Ministerio = db.define(
-  'Ministerio',
+const Campo = db.define(
+  'Campo',
   {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    descripcion: {
-      type: DataTypes.STRING,
-    },
-    logo: {
-      type: DataTypes.STRING,
-    },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: 1,
+    },
+    id_congregacion: {
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -26,4 +23,4 @@ const Ministerio = db.define(
   }
 );
 
-export default Ministerio;
+export default Campo;
