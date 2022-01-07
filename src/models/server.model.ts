@@ -10,6 +10,7 @@ import uploadsRoutes from '../routes/uploads.routes';
 import busquedasRoutes from '../routes/busquedas.routes';
 import congregacionRoutes from '../routes/congregacion.routes';
 import campoRoutes from '../routes/campo.routes';
+import path from 'path';
 
 class Server {
   private app: Application;
@@ -58,7 +59,7 @@ class Server {
     // this.app.use(express.urlencoded({ extended: false }));
 
     // Carpeta pública
-    this.app.use(express.static('public'));
+    this.app.use(express.static('./public'));
   }
 
   // Rutas
@@ -73,6 +74,10 @@ class Server {
     this.app.use(this.apiPaths.busquedas, busquedasRoutes);
     this.app.use(this.apiPaths.congregacion, congregacionRoutes);
     this.app.use(this.apiPaths.campo, campoRoutes);
+
+    this.app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, '../public/index.html'));
+    });
   }
 
   listen(): void {
