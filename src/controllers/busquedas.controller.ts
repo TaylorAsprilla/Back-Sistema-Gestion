@@ -26,10 +26,8 @@ class BusquedasController {
   public async busquedaMinisterios(req: Request, res: Response) {
     const busqueda = req.params.busqueda;
 
-    const [results, metadata] = await db.query(
-      `SELECT * FROM ministerio WHERE nombre LIKE '%${busqueda}%'
-                             or  descripcion LIKE '%${busqueda}%';`
-    );
+    const [results, metadata] = await db.query(`SELECT * FROM ministerio WHERE nombre LIKE '%${busqueda}%'
+                             or  descripcion LIKE '%${busqueda}%';`);
 
     res.json({ ok: true, busqueda: results });
   }
