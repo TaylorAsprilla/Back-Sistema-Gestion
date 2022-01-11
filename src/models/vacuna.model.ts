@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import db from '../../database/connection';
 
 const Vacuna = db.define(
-  'Vacuna',
+  'vacuna',
   {
     nombre: {
       type: DataTypes.STRING,

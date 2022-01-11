@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import db from '../../database/connection';
 
 const Campo = db.define(
-  'Campo',
+  'campo',
   {
     nombre: {
       type: DataTypes.STRING,
