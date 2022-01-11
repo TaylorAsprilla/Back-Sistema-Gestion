@@ -2,12 +2,17 @@ import { DataTypes } from 'sequelize';
 
 import db from '../../database/connection';
 
-const Vacuna = db.define(
-  'vacuna',
+const Congregacion = db.define(
+  'congregacion',
   {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+    },
+    estado: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 1,
     },
   },
   {
@@ -15,4 +20,4 @@ const Vacuna = db.define(
   }
 );
 
-export default Vacuna;
+export default Congregacion;

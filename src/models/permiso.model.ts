@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import db from '../../database/connection';
 
 const Permiso = db.define(
-  'Permiso',
+  'permiso',
   {
     nombre: {
       type: DataTypes.STRING,

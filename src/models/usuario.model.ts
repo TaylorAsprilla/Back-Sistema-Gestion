@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import db from '../../database/connection';
 
 const Usuario = db.define(
-  'Usuario',
+  'usuario',
   {
     primer_nombre: {
       type: DataTypes.STRING,
