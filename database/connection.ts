@@ -9,8 +9,8 @@ var opts = {
   },
 };
 
-const db = new Sequelize('congrega_sistema_gestion', 'congrega_tasprilla', 'v^jfq=R(^q+%', {
-  host: 'congregacionmitacol.org',
+const db = new Sequelize('sistemagestion', 'root', '', {
+  host: process.env.HOST,
   dialect: 'mysql',
   // logging: false,
 });

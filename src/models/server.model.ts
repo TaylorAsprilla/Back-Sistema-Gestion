@@ -11,6 +11,7 @@ import busquedasRoutes from '../routes/busquedas.routes';
 import congregacionRoutes from '../routes/congregacion.routes';
 import campoRoutes from '../routes/campo.routes';
 import path from 'path';
+import tipoDocumentoRoutes from '../routes/tipo-documento.routes';
 
 class Server {
   private app: Application;
@@ -25,6 +26,7 @@ class Server {
     busquedas: '/api/busquedas',
     congregacion: '/api/congregacion',
     campo: '/api/campo',
+    tipoDocumento: '/api/tipodocumento',
   };
 
   constructor() {
@@ -74,6 +76,7 @@ class Server {
     this.app.use(this.apiPaths.busquedas, busquedasRoutes);
     this.app.use(this.apiPaths.congregacion, congregacionRoutes);
     this.app.use(this.apiPaths.campo, campoRoutes);
+    this.app.use(this.apiPaths.tipoDocumento, tipoDocumentoRoutes);
 
     this.app.get('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, '../public/index.html'));
