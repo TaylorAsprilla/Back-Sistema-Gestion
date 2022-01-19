@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
-require('dotenv').config();
+
+const { database } = require('../config');
 
 //database wide options
 var opts = {
@@ -9,8 +10,8 @@ var opts = {
   },
 };
 
-const db = new Sequelize('sistemagestion', 'root', '', {
-  host: process.env.HOST,
+const db = new Sequelize(database.database, database.username, database.password, {
+  host: database.host,
   dialect: 'mysql',
   // logging: false,
 });
