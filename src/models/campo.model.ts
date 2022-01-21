@@ -10,6 +10,12 @@ const Campo = db.define(
       allowNull: false,
       unique: true,
     },
+    direccion: {
+      type: DataTypes.STRING,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+    },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: 1,
