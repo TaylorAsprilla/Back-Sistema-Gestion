@@ -17,7 +17,7 @@ class CongregacionRoutes {
      Rutas: /api/congregacion
     */
 
-    this.router.get('/', validarJWT.validarJWT, congregacionController.listarCongregaciones);
+    this.router.get('/', congregacionController.listarCongregaciones);
     this.router.get('/:id', validarJWT.validarJWT, congregacionController.listarUnaCongregacion);
     this.router.post(
       '/',

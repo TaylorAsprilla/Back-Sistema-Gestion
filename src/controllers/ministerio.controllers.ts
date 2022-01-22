@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import db from '../../database/connection';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
 
@@ -6,7 +7,9 @@ import Ministerio from '../models/ministerio.model';
 
 class MinisterioController {
   public async listarMinisterios(req: CustomRequest, res: Response) {
-    const ministerio = await Ministerio.findAll();
+    const ministerio = await Ministerio.findAll({
+      order: db.col('nombre'),
+    });
 
     res.json({ ok: true, ministerio, id: req.id });
   }

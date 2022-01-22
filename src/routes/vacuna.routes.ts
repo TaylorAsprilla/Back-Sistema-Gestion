@@ -17,7 +17,7 @@ class VacunasRoutes {
      Rutas: /api/vacunas
     */
 
-    this.router.get('/', validarJWT.validarJWT, vacunaController.listarVacunas);
+    this.router.get('/', vacunaController.listarVacunas);
     this.router.get('/:id', validarJWT.validarJWT, vacunaController.listarUnVacuna);
     this.router.post(
       '/',

@@ -14,10 +14,10 @@ class CampoRoutes {
 
   config(): void {
     /*
-     Rutas: /api/congregacion
+     Rutas: /api/campo
     */
 
-    this.router.get('/', validarJWT.validarJWT, campoController.listarCampos);
+    this.router.get('/', campoController.listarCampos);
     this.router.get('/:id', validarJWT.validarJWT, campoController.listarUnCampo);
     this.router.post(
       '/',

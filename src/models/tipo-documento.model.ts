@@ -2,19 +2,13 @@ import { DataTypes } from 'sequelize';
 
 import db from '../../database/connection';
 
-const Congregacion = db.define(
-  'congregacion',
+const TipoDocumento = db.define(
+  'tipo_documento',
   {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    direccion: {
-      type: DataTypes.STRING,
-    },
-    telefono: {
-      type: DataTypes.STRING,
     },
     estado: {
       type: DataTypes.BOOLEAN,
@@ -26,4 +20,4 @@ const Congregacion = db.define(
   }
 );
 
-export default Congregacion;
+export default TipoDocumento;
