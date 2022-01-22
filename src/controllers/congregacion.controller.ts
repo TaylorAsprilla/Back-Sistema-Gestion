@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
+import db from '../../database/connection';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
 import Congregacion from '../models/congregacion.model';
 
 class CongregacionController {
   public async listarCongregaciones(req: CustomRequest, res: Response) {
-    const congregacion = await Congregacion.findAll();
+    const congregacion = await Congregacion.findAll({
+      order: db.col('nombre'),
+    });
 
     res.json({ ok: true, congregacion: congregacion, id: req.id });
   }

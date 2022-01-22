@@ -6,7 +6,9 @@ import TipoDocumento from '../models/tipo-documento.model';
 
 class TipoDocumentoController {
   public async listarTipoDocumento(req: Request, res: Response) {
-    const tipoDocumento = await TipoDocumento.findAll();
+    const tipoDocumento = await TipoDocumento.findAll({
+      order: db.col('nombre'),
+    });
 
     res.json({ ok: true, tipoDocumento: tipoDocumento });
   }

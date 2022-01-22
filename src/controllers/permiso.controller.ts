@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
+import db from '../../database/connection';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
 import Permiso from '../models/permiso.model';
 
 class PermisoController {
   public async listarPermisos(req: CustomRequest, res: Response) {
-    const permiso = await Permiso.findAll();
+    const permiso = await Permiso.findAll({
+      order: db.col('nombre'),
+    });
 
     res.json({ ok: true, permiso: permiso, id: req.id });
   }

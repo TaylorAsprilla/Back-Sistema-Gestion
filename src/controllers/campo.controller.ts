@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Sequelize } from 'sequelize/dist';
 import db from '../../database/connection';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
@@ -6,7 +7,9 @@ import Campo from '../models/campo.model';
 
 class CampoController {
   public async listarCampos(req: CustomRequest, res: Response) {
-    const campo = await Campo.findAll();
+    const campo = await Campo.findAll({
+      order: db.col('nombre'),
+    });
 
     res.json({ ok: true, campo: campo, id: req.id });
   }
@@ -43,13 +46,7 @@ class CampoController {
       // Guardar Campo
       const campoCreado = await campo.save();
 
-      const [results, metadata] = await db.query(
-        `INSERT INTO congregacion_campo (id_congregacion, id_campo) VALUES('${idCongregacion}', '${
-          campoCreado.get().id
-        }');`
-      );
-
-      res.json({ o: true, msg: 'Campo creado ', campo: campoCreado, idCongregacion: results });
+      res.json({ ok: true, msg: 'Campo creado ', campo: campoCreado });
     } catch (error) {
       console.log(error);
       res.status(500).json({

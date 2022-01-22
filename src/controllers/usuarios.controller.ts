@@ -6,13 +6,14 @@ import { CustomRequest } from '../middlewares/validar-jwt';
 
 import Usuario from '../models/usuario.model';
 import { tokenJwt } from '../helpers/tokenJwt';
+import db from '../../database/connection';
 
 class UsuarioController {
   public async listarUsuarios(req: CustomRequest, res: Response) {
     const desde = Number(req.query.desde) || 0;
 
     const [usuarios, totalUsuarios] = await Promise.all([
-      Usuario.findAll({ offset: desde, limit: 5 }),
+      Usuario.findAll({ offset: desde, limit: 5, order: db.col('primer_nombre') }),
 
       Usuario.count(),
     ]);
