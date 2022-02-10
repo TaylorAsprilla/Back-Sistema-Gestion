@@ -36,24 +36,18 @@ class UsuarioController {
 
   public async crearUsuario(req: Request, res: Response) {
     const { body } = req;
-    const { email, password, numero_documento, celular } = req.body;
+    const { password, numero_documento } = req.body;
 
     try {
       const existeUsuario = await Usuario.findOne({
         where: {
-          [Op.or]: [{ email: email }, { numero_documento: numero_documento }, { celular: celular }],
+          [Op.or]: [{ numero_documento: numero_documento }],
         },
       });
 
       if (existeUsuario) {
         return res.status(400).json({
-          msg:
-            'Ya existe un usuario con esos valores email: ' +
-            email +
-            ' Número de documento: ' +
-            numero_documento +
-            ' o celular: ' +
-            celular,
+          msg: 'Ya existe un usuario con este número de documento: ' + numero_documento,
         });
       }
       // Encriptar contraseña
