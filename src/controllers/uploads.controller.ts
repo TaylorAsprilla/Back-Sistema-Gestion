@@ -11,7 +11,7 @@ class UploadsController {
     const id = req.params.id;
 
     // Validar tipo
-    const tiposValidos = ['usuarios', 'ministerios'];
+    const tiposValidos = ['usuarios', 'ministerios', 'carnets'];
 
     if (!tiposValidos.includes(tipo)) {
       return res.status(400).json({

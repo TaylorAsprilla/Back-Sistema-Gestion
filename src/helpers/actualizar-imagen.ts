@@ -65,7 +65,7 @@ class ActualizarImagen {
         this.borrarImagen(pathViejo);
 
         await carnet.update(
-          { logo: nombreArchivo },
+          { carnet: nombreArchivo },
           {
             where: {
               id: idImagen,
