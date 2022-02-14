@@ -18,7 +18,7 @@ class BusquedasRoutes {
   }
 
   config(): void {
-    this.router.get('/usuarios/:busqueda', validarJWT.validarJWT, busquedaController.busquedaUsuarios);
+    this.router.get('/usuarios/:busqueda', busquedaController.busquedaUsuarios);
     this.router.get('/ministerios/:busqueda', validarJWT.validarJWT, busquedaController.busquedaMinisterios);
     this.router.get('/:busqueda', validarJWT.validarJWT, busquedaController.getTodo);
   }

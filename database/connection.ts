@@ -1,6 +1,6 @@
-import { Sequelize } from 'sequelize';
+import { Dialect, Sequelize } from 'sequelize';
 
-const { database } = require('../config');
+// import { database } from '../config';
 
 //database wide options
 var opts = {
@@ -10,8 +10,8 @@ var opts = {
   },
 };
 
-const db = new Sequelize(database.database, database.username, database.password, {
-  host: database.host,
+const db = new Sequelize('sistemagestion', 'root', '', {
+  host: 'localhost',
   dialect: 'mysql',
   // logging: false,
 });

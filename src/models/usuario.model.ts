@@ -26,7 +26,6 @@ const Usuario = db.define(
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         isEmail: true,
       },
@@ -60,6 +59,9 @@ const Usuario = db.define(
       type: DataTypes.STRING,
     },
     imagen: {
+      type: DataTypes.STRING,
+    },
+    carnet: {
       type: DataTypes.STRING,
     },
   },

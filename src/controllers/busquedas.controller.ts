@@ -12,18 +12,7 @@ class BusquedasController {
 
     const resultadoUsuario = await Usuario.findAll({
       where: {
-        [Op.or]: [
-          { primer_nombre: { [Op.substring]: busqueda } },
-          { segundo_nombre: { [Op.substring]: busqueda } },
-          { primer_apellido: { [Op.substring]: busqueda } },
-          { segundo_apellido: { [Op.substring]: busqueda } },
-          { numero_documento: { [Op.substring]: busqueda } },
-          { email: { [Op.substring]: busqueda } },
-          { celular: { [Op.substring]: busqueda } },
-          { fecha_nacimiento: { [Op.substring]: busqueda } },
-          { estado: { [Op.substring]: busqueda } },
-          { login: { [Op.substring]: busqueda } },
-        ],
+        [Op.or]: [{ numero_documento: { [Op.substring]: busqueda } }, { celular: { [Op.substring]: busqueda } }],
       },
       order: db.col('primer_nombre'),
     });

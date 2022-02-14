@@ -53,6 +53,28 @@ class ActualizarImagen {
 
         return true;
         break;
+
+      case 'carnets':
+        const carnet = await Usuario.findOne({ where: { id: idImagen } });
+
+        if (!carnet) {
+          return false;
+        }
+
+        pathViejo = `./uploads/carnets/${carnet.getDataValue('imagen')}`;
+        this.borrarImagen(pathViejo);
+
+        await carnet.update(
+          { carnet: nombreArchivo },
+          {
+            where: {
+              id: idImagen,
+            },
+          }
+        );
+
+        return true;
+        break;
     }
   }
 
