@@ -12,10 +12,10 @@ class BusquedasController {
 
     const resultadoUsuario = await Usuario.findAll({
       where: {
-        [Op.or]: [{ numero_documento: { [Op.substring]: busqueda } }, { celular: { [Op.substring]: busqueda } }],
+        numero_documento: busqueda,
       },
-      order: db.col('primer_nombre'),
     });
+
     res.json({ ok: true, busqueda: resultadoUsuario });
   }
 
