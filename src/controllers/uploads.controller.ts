@@ -35,7 +35,7 @@ class UploadsController {
     const extensionArchivo = nombreCortado[nombreCortado.length - 1];
 
     // Validar extension
-    const extensionesValidas = ['png', 'jpg', 'jpeg', 'gif'];
+    const extensionesValidas = ['png', 'jpg', 'jpeg', 'pdf', 'PDF', 'PNG', 'JPEG', 'JPG'];
     if (!extensionesValidas.includes(extensionArchivo)) {
       return res.status(400).json({
         ok: false,

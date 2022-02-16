@@ -17,7 +17,9 @@ class UsuariosRoutes {
     */
 
     this.router.get('/', validarJWT.validarJWT, usuarioController.listarUsuarios);
+    this.router.get('/todos', validarJWT.validarJWT, usuarioController.listarTodosLosUsuarios);
     this.router.get('/:id', validarJWT.validarJWT, usuarioController.listarUnUsuario);
+
     this.router.post(
       '/',
       [
