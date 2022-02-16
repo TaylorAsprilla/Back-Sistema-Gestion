@@ -21,6 +21,14 @@ class UsuarioController {
     res.json({ ok: true, usuarios: usuarios, totalUsuarios: totalUsuarios, id: req.id });
   }
 
+  public async listarTodosLosUsuarios(req: CustomRequest, res: Response) {
+    const desde = Number(req.query.desde) || 0;
+
+    const [usuarios, totalUsuarios] = await Promise.all([Usuario.findAll(), Usuario.count()]);
+
+    res.json({ ok: true, usuarios: usuarios, totalUsuarios: totalUsuarios, id: req.id });
+  }
+
   public async listarUnUsuario(req: CustomRequest, res: Response) {
     const { id } = req.params;
     const usuario = await Usuario.findByPk(id);
