@@ -26,19 +26,21 @@ const Usuario = db.define(
     },
     email: {
       type: DataTypes.STRING,
-      validate: {
-        isEmail: true,
-      },
     },
     celular: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     fecha_nacimiento: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: 1,
+    },
+    documentoTutor: {
+      type: DataTypes.STRING,
     },
     id_congregacion: {
       type: DataTypes.INTEGER,

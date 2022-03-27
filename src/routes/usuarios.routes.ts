@@ -26,8 +26,6 @@ class UsuariosRoutes {
         check('primer_nombre', 'El nombre es obligatorio ').not().isEmpty(),
         check('primer_apellido', 'El apellido es obligatorio ').not().isEmpty(),
         check('numero_documento', 'El Número del documento es obligatorio ').not().isEmpty(),
-        check('email', 'El email es obligatorio ').isEmail(),
-        check('fecha_nacimiento', 'La fecha de nacimiento es obligatoria ').not().isEmpty(),
         validarCampos.validarCampos,
       ],
       usuarioController.crearUsuario
@@ -38,8 +36,6 @@ class UsuariosRoutes {
         check('primer_nombre', 'El nombre es obligatorio ').not().isEmpty(),
         check('primer_apellido', 'El apellido es obligatorio ').not().isEmpty(),
         check('numero_documento', 'El Número del documento es obligatorio ').not().isEmpty(),
-        check('email', 'El email es obligatorio ').isEmail(),
-        check('fecha_nacimiento', 'La fecha de nacimiento es obligatoria ').not().isEmpty(),
         validarCampos.validarCampos,
       ],
       usuarioController.actualizarUsuario
