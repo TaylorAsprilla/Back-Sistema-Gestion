@@ -85,7 +85,7 @@ class UsuarioController {
   public async actualizarUsuario(req: Request, res: Response) {
     const { id } = req.params;
     const { body } = req;
-    const { password, email, numero_documento, imagen, ...campos } = body;
+    const { password, numero_documento, imagen, ...campos } = body;
 
     try {
       const usuario = await Usuario.findByPk(id);
@@ -95,24 +95,11 @@ class UsuarioController {
         });
       }
 
-      const getEmail = await usuario.get().email;
       const getNumeroDocumento = await usuario.get().numero_documento;
 
       // Actualizaciones
 
-      if (getEmail !== email) {
-        const existeEmail = await Usuario.findOne({
-          where: {
-            email: email,
-          },
-        });
-        if (existeEmail) {
-          return res.status(400).json({
-            ok: false,
-            msg: 'Ya existe un usuario con este email',
-          });
-        }
-      } else if (getNumeroDocumento !== numero_documento) {
+      if (getNumeroDocumento !== numero_documento) {
         const existeNumeroDocumento = await Usuario.findOne({
           where: {
             numero_documento: numero_documento,
@@ -126,7 +113,12 @@ class UsuarioController {
         }
       }
 
-      campos.email = await email;
+      // Encriptar contraseña
+      if (password) {
+        const salt = bcrypt.genSaltSync();
+        campos.password = await bcrypt.hashSync(password, salt);
+      }
+
       campos.numero_documento = await numero_documento;
 
       const usuarioActualizado = await usuario.update(campos, { new: true });
