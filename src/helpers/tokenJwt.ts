@@ -16,7 +16,7 @@ class TokenJwt {
         (err: string, token: string) => {
           if (err) {
             console.log(err);
-            reject('No se pudo genere el JWT');
+            reject('No se pudo generar el JWT');
           } else {
             resolve(token);
           }

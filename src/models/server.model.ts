@@ -13,6 +13,8 @@ import campoRoutes from '../routes/campo.routes';
 import path from 'path';
 import tipoDocumentoRoutes from '../routes/tipo-documento.routes';
 import generoRoutes from '../routes/genero.routes';
+import dosisRoutes from '../routes/dosis.routes';
+import ingresoRoutes from '../routes/ingreso.routes';
 
 class Server {
   private app: Application;
@@ -29,6 +31,8 @@ class Server {
     campo: '/api/campo',
     tipoDocumento: '/api/tipodocumento',
     genero: '/api/genero',
+    dosis: '/api/dosis',
+    ingreso: '/api/ingreso',
   };
 
   constructor() {
@@ -80,6 +84,8 @@ class Server {
     this.app.use(this.apiPaths.campo, campoRoutes);
     this.app.use(this.apiPaths.tipoDocumento, tipoDocumentoRoutes);
     this.app.use(this.apiPaths.genero, generoRoutes);
+    this.app.use(this.apiPaths.dosis, dosisRoutes);
+    this.app.use(this.apiPaths.ingreso, ingresoRoutes);
 
     this.app.get('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, '../public/index.html'));
