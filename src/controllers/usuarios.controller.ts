@@ -7,6 +7,7 @@ import { CustomRequest } from '../middlewares/validar-jwt';
 import Usuario from '../models/usuario.model';
 import { tokenJwt } from '../helpers/tokenJwt';
 import db from '../../database/connection';
+import UsuarioRegistro from '../models/usuario_registro.model';
 
 class UsuarioController {
   public async listarUsuarios(req: CustomRequest, res: Response) {
@@ -42,7 +43,7 @@ class UsuarioController {
     }
   }
 
-  public async crearUsuario(req: Request, res: Response) {
+  public async crearUsuario(req: CustomRequest, res: Response) {
     const { body } = req;
     const { password, numero_documento } = req.body;
 
