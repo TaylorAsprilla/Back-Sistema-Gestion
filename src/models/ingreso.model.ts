@@ -13,6 +13,10 @@ const Ingreso = db.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    id_congregacion: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     freezeTableName: true,

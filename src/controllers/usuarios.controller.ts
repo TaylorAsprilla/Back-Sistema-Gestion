@@ -70,9 +70,6 @@ class UsuarioController {
       // Guardar Usuario
       await usuario.save();
 
-      console.log('Usuario', usuario.getDataValue('id'));
-      console.log('Voluntario', req.id);
-
       // Generar Token - JWT
       const token = await tokenJwt.generarJWT(usuario.getDataValue('id'), usuario.getDataValue('login'));
 

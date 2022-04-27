@@ -43,6 +43,12 @@ class IngresoController {
       });
     }
   }
+
+  public async getIngresos(req: CustomRequest, res: Response) {
+    const ingresos = await Ingreso.findAll();
+
+    res.json({ ok: true, ingresos, id: req.id });
+  }
 }
 
 export const ingresoController = new IngresoController();

@@ -11,7 +11,7 @@ class TokenJwt {
         payload,
         process.env.JWT_SECRET,
         {
-          expiresIn: '24h',
+          expiresIn: '8h',
         },
         (err: string, token: string) => {
           if (err) {
