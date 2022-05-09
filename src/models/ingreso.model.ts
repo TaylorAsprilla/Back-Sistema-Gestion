@@ -17,6 +17,10 @@ const Ingreso = db.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    fecha_ingreso: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
   {
     freezeTableName: true,
