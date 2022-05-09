@@ -23,6 +23,7 @@ class IngresoRoutes {
         check('id_daIngreso', 'El Id del voluntario es obligatorio ').not().isEmpty(),
         check('id_usuario', 'El Id del usuario es obligatorio ').not().isEmpty(),
         check('id_congregacion', 'El Id de la congregación es obligatorio ').not().isEmpty(),
+        check('fecha_ingreso', 'La fecha del ingreso es obligatorio ').not().isEmpty(),
         validarCampos.validarCampos,
       ],
       ingresoController.crearIngreso
