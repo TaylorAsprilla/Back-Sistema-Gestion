@@ -3,6 +3,7 @@ import db from '../../database/connection';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
 import Permiso from '../models/permiso.model';
+import UsuarioPermiso from '../models/usuario-permiso.model';
 
 class PermisoController {
   public async listarPermisos(req: CustomRequest, res: Response) {
@@ -125,6 +126,29 @@ class PermisoController {
     } catch (error) {
       console.log(error);
       res.status(500).json({
+        msg: 'Hable con el administrador',
+      });
+    }
+  }
+
+  public async getPermisoUsuario(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const [permisos, metadata] = await db.query(
+        `SELECT up.id_usuario, up.id_permiso, p.nombre, p.estado 
+         FROM usuario_permiso up 
+         INNER JOIN permiso p ON up.id_permiso = p.id 
+         WHERE up.id_usuario = ${id}`
+      );
+
+      res.json({
+        ok: true,
+        permisos,
+        id: id,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error,
         msg: 'Hable con el administrador',
       });
     }
