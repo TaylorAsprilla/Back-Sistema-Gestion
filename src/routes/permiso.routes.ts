@@ -19,6 +19,7 @@ class PermisosRoutes {
 
     this.router.get('/', validarJWT.validarJWT, permisoController.listarPermisos);
     this.router.get('/:id', validarJWT.validarJWT, permisoController.listarUnPermiso);
+    this.router.get('/usuario/:id', validarJWT.validarJWT, permisoController.getPermisoUsuario);
     this.router.post(
       '/',
       [check('nombre', 'El nombre es obligatorio ').not().isEmpty(), validarCampos.validarCampos],

@@ -7,7 +7,6 @@ import { CustomRequest } from '../middlewares/validar-jwt';
 import Usuario from '../models/usuario.model';
 import { tokenJwt } from '../helpers/tokenJwt';
 import db from '../../database/connection';
-import UsuarioRegistro from '../models/usuario_registro.model';
 
 class UsuarioController {
   public async listarUsuarios(req: CustomRequest, res: Response) {
