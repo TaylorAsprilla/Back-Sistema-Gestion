@@ -1,13 +1,15 @@
 import { Request, Response } from 'express';
+import { Op } from 'sequelize';
 
 import { CustomRequest } from '../middlewares/validar-jwt';
+import Congregacion from '../models/congregacion.model';
 import Ingreso from '../models/ingreso.model';
 import Usuario from '../models/usuario.model';
 
 class IngresoController {
   public async crearIngreso(req: Request, res: Response) {
     const { body } = req;
-    const { id_daIngreso, id_usuario } = req.body;
+    const { id_daIngreso, id_usuario, fecha_ingreso, id_congregacion } = req.body;
 
     try {
       const existeVoluntario = await Usuario.findOne({
@@ -30,16 +32,52 @@ class IngresoController {
         });
       }
 
-      const nuevoIngreso = await Ingreso.build(body);
+      const existeIngreso = await Ingreso.findOne({
+        attributes: ['id_usuario', 'fecha_ingreso', 'id_congregacion'],
+        where: { [Op.and]: [{ id_usuario }, { id_congregacion }, { fecha_ingreso: fecha_ingreso }] },
+      });
 
-      // Guardar Ingreso
-      await nuevoIngreso.save();
+      if (existeIngreso) {
+        const primerNombreUsuario = (await existeUsuario?.getDataValue('primer_nombre'))
+          ? existeUsuario?.getDataValue('primer_nombre')
+          : '';
+        const segundoNombreUsuario = (await existeUsuario?.getDataValue('segundo_nombre'))
+          ? existeUsuario?.getDataValue('segundo_nombre')
+          : '';
+        const primerApellidoUsuario = (await existeUsuario?.getDataValue('primer_apellido'))
+          ? existeUsuario?.getDataValue('primer_apellido')
+          : '';
+        const segundoApellidoUsuario = (await existeUsuario?.getDataValue('segundo_apellido'))
+          ? existeUsuario?.getDataValue('segundo_apellido')
+          : '';
 
-      res.json({ ok: true, msg: 'Ingreso Existoso ', nuevoIngreso });
+        const congregacion = await Congregacion.findOne({
+          where: {
+            id: id_congregacion,
+          },
+        });
+
+        const nombrecongregacion = await congregacion?.getDataValue('nombre');
+
+        return res.status(400).json({
+          msg: `El usuario <b> ${primerNombreUsuario} ${segundoNombreUsuario} ${primerApellidoUsuario} ${segundoApellidoUsuario} </b>
+          ya realizó el ingreso en la congregación de <b>${nombrecongregacion}</b>`,
+          id_usuario,
+          id_congregacion,
+          fecha_ingreso,
+        });
+      } else {
+        const nuevoIngreso = Ingreso.build(body);
+
+        // Guardar Ingreso
+        await nuevoIngreso.save();
+
+        res.json({ ok: true, msg: 'Ingreso Existoso ', nuevoIngreso });
+      }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

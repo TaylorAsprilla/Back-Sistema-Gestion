@@ -18,7 +18,7 @@ const Ingreso = db.define(
       allowNull: false,
     },
     fecha_ingreso: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },

@@ -49,9 +49,10 @@ class PermisoController {
 
       res.json({ o: true, msg: 'Permiso creado ', permiso: permiso });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -92,10 +93,10 @@ class PermisoController {
 
       res.json({ msg: 'Permiso Actualizado ', permisoActualizado: permisoActualizado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -124,9 +125,10 @@ class PermisoController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

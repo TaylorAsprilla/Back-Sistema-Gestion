@@ -45,9 +45,10 @@ class VacunaController {
 
       res.json({ o: true, msg: 'Vacuna creada ', vacuna: vacuna });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -88,10 +89,10 @@ class VacunaController {
 
       res.json({ msg: 'Vacuna Actualizado ', vacunaActualizada: vacunaActualizada });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -120,9 +121,10 @@ class VacunaController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

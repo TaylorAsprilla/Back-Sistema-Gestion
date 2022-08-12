@@ -43,7 +43,6 @@ const login = async (req: Request, res: Response) => {
       usuario: loginUsuario,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       ok: false,
       msg: 'Hable con el administrador',
