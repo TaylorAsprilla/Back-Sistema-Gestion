@@ -59,9 +59,8 @@ class IngresoController {
 
         const nombrecongregacion = await congregacion?.getDataValue('nombre');
 
-        return res.status(400).json({
-          msg: `El usuario <b> ${primerNombreUsuario} ${segundoNombreUsuario} ${primerApellidoUsuario} ${segundoApellidoUsuario} </b>
-          ya realizó el ingreso en la congregación de <b>${nombrecongregacion}</b>`,
+        return res.status(406).json({
+          msg: `El usuario <b> ${primerNombreUsuario} ${segundoNombreUsuario} ${primerApellidoUsuario} ${segundoApellidoUsuario} </b> ya realizó el ingreso en la congregación de <b>${nombrecongregacion}</b>`,
           id_usuario,
           id_congregacion,
           fecha_ingreso,
