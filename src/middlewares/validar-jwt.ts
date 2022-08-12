@@ -13,6 +13,7 @@ class ValidarJWT {
     if (!token) {
       return res.status(401).json({
         ok: false,
+        noToken: true,
         msg: ' No hay token en la petición',
       });
     }

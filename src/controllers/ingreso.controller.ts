@@ -76,6 +76,8 @@ class IngresoController {
       }
     } catch (error) {
       res.status(500).json({
+        ok: false,
+        noToken: true,
         msg: 'Hable con el administrador',
         error,
       });
