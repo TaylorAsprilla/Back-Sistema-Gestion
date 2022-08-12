@@ -49,9 +49,10 @@ class MinisterioController {
 
       res.json({ o: true, msg: 'Ministerio creado ', ministerio });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -92,10 +93,10 @@ class MinisterioController {
 
       res.json({ msg: 'Ministerio Actualizado ', ministerioActualizado: ministerioActualizado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -124,9 +125,10 @@ class MinisterioController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

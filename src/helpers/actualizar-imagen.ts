@@ -8,7 +8,7 @@ class ActualizarImagen {
   public async actualizarImagen(id: string, tipo: string, nombreArchivo: string) {
     let pathViejo = '';
     const idImagen = String(id);
-    console.log(id);
+
     switch (tipo) {
       case 'usuarios':
         const usuario = await Usuario.findOne({ where: { id: idImagen } });

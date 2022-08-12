@@ -74,8 +74,8 @@ class UsuarioController {
 
       res.json({ ok: true, msg: 'Usuario creado ', usuario, token });
     } catch (error) {
-      console.log('Error', error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
         error,
       });
@@ -159,9 +159,10 @@ class UsuarioController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

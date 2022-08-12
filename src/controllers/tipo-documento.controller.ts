@@ -51,9 +51,10 @@ class TipoDocumentoController {
         tipoDocumento: tipoDocumentoCreado,
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -96,10 +97,10 @@ class TipoDocumentoController {
 
       res.json({ msg: 'Tipo de documento Actualizado ', tipoDocumentoActualizado: tipoDocumentoActualizado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -127,9 +128,10 @@ class TipoDocumentoController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

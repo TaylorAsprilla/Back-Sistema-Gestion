@@ -48,9 +48,9 @@ class CampoController {
 
       res.json({ ok: true, msg: 'Campo creado ', campo: campoCreado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -94,10 +94,10 @@ class CampoController {
 
       res.json({ msg: 'Campo Actualizado ', campoActualizado: campoActualizado });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -125,9 +125,10 @@ class CampoController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

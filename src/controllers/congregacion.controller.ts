@@ -48,9 +48,10 @@ class CongregacionController {
 
       res.json({ ok: true, msg: 'Congregación creada ', congregacion: congregacion });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -91,10 +92,10 @@ class CongregacionController {
 
       res.json({ msg: 'Congregación Actualizada ', congregacionActualizada: congregacionActualizada });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -123,9 +124,10 @@ class CongregacionController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }

@@ -32,9 +32,10 @@ class DosisController {
 
       res.json({ o: true, msg: 'Dosis creada ', nuevaDosis });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
@@ -63,9 +64,10 @@ class DosisController {
         });
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
+        ok: false,
         msg: 'Hable con el administrador',
+        error,
       });
     }
   }
